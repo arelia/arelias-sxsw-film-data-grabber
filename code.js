@@ -30,7 +30,7 @@
 
 // from https://schedule.sxsw.com/2023/films
 
-let movieNodes = document.querySelectorAll('.er-event-title')
+let movieNodes = document.querySelectorAll('.er-content-container')
 let movieHash = []
 
 function getMovieInfo(listItem) {
@@ -40,6 +40,8 @@ function getMovieInfo(listItem) {
   let genres = listItem.querySelector('.badge-split-film-genre .badge-content') ? listItem.querySelector('.badge-split-film-genre .badge-content').innerText.replaceAll(',', ' | ') : ""
   let section = listItem.querySelector('.badge-split-film-section .badge-content') ? listItem.querySelector('.badge-split-film-section .badge-content').innerText.replaceAll(',', ' | ') : ""
   let premiere = listItem.querySelector('.badge-split-film-premiere .badge-content') ? listItem.querySelector('.badge-split-film-premiere .badge-content').innerText.replaceAll(',', ' | ') : ""
+  let director = listItem.querySelector('.badge-split-director .badge-content') ? listItem.querySelector('.badge-split-director .badge-content').innerText.replaceAll(',', ' | ') : ""
+  let image_url = listItem.querySelector('.er-event-image img').src ? listItem.querySelector('.er-event-image img').src : ""
 
       let hash = {
         'title': title,
@@ -47,7 +49,9 @@ function getMovieInfo(listItem) {
         'category': category,
         'genres': genres,
         'section': section,
-        'premiere': premiere
+        'premiere': premiere,
+        'director': director,
+        'image_url': image_url,
       };
   movieHash.push(hash);
 }
