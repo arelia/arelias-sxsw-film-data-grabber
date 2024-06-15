@@ -1,0 +1,25 @@
+{
+  "name": "sxsw-film",
+  "version": "1.0.0",
+  "description": "film scraper",
+  "main": "scraper.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arelia/arelias-sxsw-film-data-grabber.git"
+  },
+  "keywords": [
+    "film"
+  ],
+  "author": "arelia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arelia/arelias-sxsw-film-data-grabber/issues"
+  },
+  "homepage": "https://github.com/arelia/arelias-sxsw-film-data-grabber#readme",
+  "dependencies": {
+    "playwright": "^1.44.1"
+  }
+}
