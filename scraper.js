@@ -44,7 +44,8 @@ function convertToJson(hash) {
     const browser = await playwright.chromium.launch({ headless: true });
     const context = await browser.newContext();
     const page = await context.newPage();
-    await page.goto("https://schedule.sxsw.com/2024/search/film"); // TODO: Use current year
+    await page.goto("https://arelia.github.io/arelias-sxsw-film-data-grabber/");
+    // await page.goto("https://schedule.sxsw.com/2024/search/film"); // TODO: Use current year
 
     let movieNodes = page.querySelectorAll('.er-content-container')
     
