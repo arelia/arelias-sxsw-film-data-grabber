@@ -54,13 +54,13 @@ with sync_playwright() as p:
 
     print("Parsing movie nodes...")
 
-    movie_list = [get_movie_info(movie) for movie in movie_nodes]
+    [get_movie_info(movie) for movie in movie_nodes]
 
     # print("Our movie_hash:", movie_hash)
 
     print("Converting to JSON...")
 
-    convert_to_json(movie_list)
+    convert_to_json(movie_hash)
 
     print("Done!")
 
