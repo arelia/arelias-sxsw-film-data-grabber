@@ -1,4 +1,4 @@
-import json
+import csv
 from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
 
@@ -33,11 +33,22 @@ def get_movie_info(node):
     }
     movie_hash.append(hash)
 
-def convert_to_json(hash):
-    json_output = json.dumps(hash, ensure_ascii=False)
-    print(json_output)
-    # For copying to clipboard, you might need additional libraries like pyperclip
-    # pyperclip.copy(json_output)
+def convert_to_csv(data):
+    csv_file_name = 'output.csv'
+
+    headers = data[0].keys()
+
+    with open(csv_file_name, mode='w', newline='') as file:
+        writer = csv.DictWriter(file, fieldnames=headers)
+        
+        # Write the headers
+        writer.writeheader()
+        
+        # Write the data rows
+        for row in data:
+            writer.writerow(row)
+
+    print(f'Data has been written to {csv_file_name}')
 
 
 with sync_playwright() as p:
@@ -45,23 +56,16 @@ with sync_playwright() as p:
     page = browser.new_page()
 
     print("Opening page...")
-
     page.goto("https://arelia.github.io/arelias-sxsw-film-data-grabber/")
 
     print("Grabbing movie nodes...")
-
     movie_nodes = page.query_selector_all('.er-content-container')
 
     print("Parsing movie nodes...")
-
     [get_movie_info(movie) for movie in movie_nodes]
 
-    # print("Our movie_hash:", movie_hash)
-
-    print("Converting to JSON...")
-
-    convert_to_json(movie_hash)
+    print("Converting to CSV...")
+    convert_to_csv(movie_hash)
 
     print("Done!")
-
-    browser.close(); # TODO: close earlier?
+    browser.close();
